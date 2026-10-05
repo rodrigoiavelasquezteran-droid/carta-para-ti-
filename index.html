@@ -1,0 +1,1159 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Para Paloma 💗</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            font-family: "Segoe UI", Arial, sans-serif;
+
+            background:
+                radial-gradient(circle at top, #fff5fa, transparent 40%),
+                linear-gradient(135deg, #ffd1e4, #ffeaf3, #ffc1dc);
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            color: #6b2145;
+
+            overflow-x: hidden;
+        }
+
+
+        .contenedor {
+            width: 92%;
+            max-width: 850px;
+            margin: 30px auto;
+        }
+
+
+        .tarjeta {
+            background: rgba(255,255,255,0.96);
+
+            border-radius: 30px;
+
+            padding: 35px;
+
+            box-shadow:
+                0 15px 45px rgba(150,50,100,0.25);
+
+            text-align: center;
+
+            position: relative;
+
+            z-index: 2;
+        }
+
+
+        .pantalla {
+            display: none;
+        }
+
+
+        .visible {
+            display: block;
+
+            animation: aparecer 0.8s ease;
+        }
+
+
+        @keyframes aparecer {
+
+            from {
+                opacity: 0;
+                transform: translateY(25px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+        }
+
+
+        .decoracion {
+            font-size: 55px;
+            margin-bottom: 10px;
+        }
+
+
+        h1 {
+            color: #d94b8b;
+            font-size: 38px;
+            margin-bottom: 20px;
+        }
+
+
+        h2 {
+            color: #d94b8b;
+            font-size: 29px;
+        }
+
+
+        p {
+            font-size: 18px;
+            line-height: 1.8;
+            text-align: left;
+        }
+
+
+        .centrado {
+            text-align: center;
+        }
+
+
+        /* =========================
+           BOTONES
+        ========================= */
+
+        .boton {
+            border: none;
+
+            padding: 15px 30px;
+
+            border-radius: 30px;
+
+            font-size: 18px;
+
+            cursor: pointer;
+
+            margin: 10px;
+
+            font-weight: bold;
+
+            transition: 0.3s;
+        }
+
+
+        .boton:hover {
+            transform: scale(1.07);
+        }
+
+
+        .abrir {
+            background: #ff75ad;
+            color: white;
+        }
+
+
+        .si {
+            background: #ff4f9a;
+            color: white;
+        }
+
+
+        .no {
+            background: #eeeeee;
+            color: #555;
+            position: relative;
+        }
+
+
+        /* =========================
+           REPRODUCTOR
+        ========================= */
+
+        .musica-box {
+
+            margin: 25px auto;
+
+            padding: 18px;
+
+            max-width: 500px;
+
+            background: linear-gradient(
+                135deg,
+                #fff0f7,
+                #ffe1ef
+            );
+
+            border-radius: 20px;
+
+            box-shadow:
+                0 5px 20px rgba(200,80,130,0.15);
+
+        }
+
+
+        .musica-titulo {
+
+            color: #d94b8b;
+
+            font-size: 18px;
+
+            font-weight: bold;
+
+            margin-bottom: 12px;
+
+            text-align: center;
+
+        }
+
+
+        audio {
+
+            width: 100%;
+
+            height: 45px;
+
+        }
+
+
+        .controles-musica {
+
+            display: flex;
+
+            justify-content: center;
+
+            gap: 10px;
+
+            flex-wrap: wrap;
+
+            margin-top: 12px;
+
+        }
+
+
+        .boton-musica {
+
+            border: none;
+
+            background: #ff75ad;
+
+            color: white;
+
+            padding: 10px 18px;
+
+            border-radius: 25px;
+
+            cursor: pointer;
+
+            font-size: 15px;
+
+            font-weight: bold;
+
+        }
+
+
+        .boton-musica:hover {
+
+            background: #ff4f9a;
+
+        }
+
+
+        /* =========================
+           DECORACIÓN
+        ========================= */
+
+        .separador {
+
+            color: #ff72aa;
+
+            font-size: 25px;
+
+            margin: 25px 0;
+
+        }
+
+
+        .firma {
+
+            font-size: 20px;
+
+            color: #d94b8b;
+
+            font-weight: bold;
+
+            text-align: center;
+
+            margin-top: 30px;
+
+        }
+
+
+        .mensaje-final {
+
+            text-align: center;
+
+            font-size: 19px;
+
+            line-height: 1.8;
+
+        }
+
+
+        /* =========================
+           CORAZONES
+        ========================= */
+
+        .corazon {
+
+            position: fixed;
+
+            font-size: 25px;
+
+            animation: subir 5s linear forwards;
+
+            pointer-events: none;
+
+            z-index: 10;
+
+        }
+
+
+        @keyframes subir {
+
+            0% {
+
+                transform:
+                    translateY(100vh)
+                    rotate(0deg);
+
+                opacity: 1;
+            }
+
+            100% {
+
+                transform:
+                    translateY(-120px)
+                    rotate(360deg);
+
+                opacity: 0;
+            }
+
+        }
+
+
+        /* =========================
+           CELULAR
+        ========================= */
+
+        @media (max-width: 600px) {
+
+            .tarjeta {
+
+                padding: 25px 18px;
+
+            }
+
+
+            h1 {
+
+                font-size: 30px;
+
+            }
+
+
+            h2 {
+
+                font-size: 24px;
+
+            }
+
+
+            p {
+
+                font-size: 16px;
+
+            }
+
+
+            .decoracion {
+
+                font-size: 45px;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<div class="contenedor">
+
+
+    <!-- ================================= -->
+    <!-- INICIO -->
+    <!-- ================================= -->
+
+    <div id="inicio" class="tarjeta pantalla visible">
+
+
+        <div class="decoracion">
+
+            🎀🐰🎀
+
+        </div>
+
+
+        <h1>
+
+            Para Paloma 💗
+
+        </h1>
+
+
+        <p class="centrado">
+
+            Hice esto especialmente para ti.
+
+            Hay algo que quiero decirte y preferí hacerlo
+
+            de una manera diferente.
+
+        </p>
+
+
+        <button
+            class="boton abrir"
+            onclick="abrirCarta()">
+
+            Abrir mi carta 💌
+
+        </button>
+
+
+    </div>
+
+
+
+    <!-- ================================= -->
+    <!-- CARTA -->
+    <!-- ================================= -->
+
+    <div id="carta" class="tarjeta pantalla">
+
+
+        <div class="decoracion">
+
+            🎀🐰🎀
+
+        </div>
+
+
+        <h1>
+
+            Paloma...
+
+        </h1>
+
+
+        <!-- ================================= -->
+        <!-- MÚSICA -->
+        <!-- ================================= -->
+
+        <div class="musica-box">
+
+
+            <div class="musica-titulo">
+
+                🎵 Una canción para ti 💗
+
+            </div>
+
+
+            <audio
+                id="musica"
+                controls
+                loop
+                preload="auto">
+
+                <source
+                    src="musica.mp3"
+                    type="audio/mpeg">
+
+                Tu navegador no puede reproducir este audio.
+
+            </audio>
+
+
+            <div class="controles-musica">
+
+
+                <button
+                    class="boton-musica"
+                    onclick="reproducirMusica()">
+
+                    ▶ Reproducir
+
+                </button>
+
+
+                <button
+                    class="boton-musica"
+                    onclick="pausarMusica()">
+
+                    ⏸ Pausar
+
+                </button>
+
+
+            </div>
+
+
+        </div>
+
+
+
+        <!-- ================================= -->
+        <!-- TEXTO -->
+        <!-- ================================= -->
+
+
+        <p>
+
+            Si llegaste hasta aquí, quiero que sepas que esto no es
+            una declaración cualquiera. Tú y yo ya tenemos una historia.
+            Ya nos conocemos, hemos compartido momentos, hemos reído,
+            hemos tenido problemas, hemos pasado momentos buenos y también
+            momentos que no fueron tan fáciles.
+
+        </p>
+
+
+        <p>
+
+            Y justamente por eso quería hacer esto. Porque no eres una
+            persona que apareció de la nada en mi vida. Tú ya formaste
+            parte de ella y, de una manera u otra, terminaste
+            convirtiéndote en alguien demasiado importante para mí.
+
+        </p>
+
+
+        <p>
+
+            Tú fuiste mi primer amor. Y creo que por eso hay cosas que
+            simplemente no se olvidan. Hay recuerdos que se quedan
+            guardados, momentos que uno recuerda aunque pase el tiempo
+            y personas que siempre terminan teniendo un lugar especial
+            en nuestra historia.
+
+        </p>
+
+
+        <p>
+
+            Nosotros tuvimos nuestra historia, vivimos muchas cosas juntos
+            y en algún momento nuestros caminos se separaron.
+
+            No voy a decir que todo fue perfecto, porque obviamente no lo fue.
+
+            Tuvimos errores, tuvimos discusiones y seguramente los dos
+            hicimos cosas que podríamos haber hecho de otra manera.
+
+        </p>
+
+
+        <p>
+
+            Pero también tuvimos momentos muy bonitos.
+
+            Momentos que hicieron que me encariñara contigo,
+            que aprendiera a conocerte y que descubriera muchas cosas
+            de ti que me gustaban.
+
+        </p>
+
+
+        <p>
+
+            Y después de todo eso, nuestros caminos volvieron a encontrarse.
+
+        </p>
+
+
+        <p>
+
+            Cuando volvimos, me di cuenta de algo:
+
+            no quería que simplemente volviéramos para repetir exactamente
+            lo mismo que antes.
+
+        </p>
+
+
+        <p>
+
+            Quiero que esta nueva etapa sea diferente.
+
+        </p>
+
+
+        <p>
+
+            Quiero que podamos aprender de todo lo que pasó.
+
+            Quiero que cuando tengamos algún problema podamos hablarlo
+            en lugar de alejarnos.
+
+            Quiero que podamos escucharnos, entendernos y decirnos lo que
+            sentimos sin miedo.
+
+        </p>
+
+
+        <p>
+
+            Sé que ninguno de los dos es perfecto. Yo tampoco lo soy.
+
+            Tengo muchas cosas que mejorar y sé que todavía me falta
+            aprender bastante sobre cómo llevar una relación de una manera
+            sana y bonita.
+
+        </p>
+
+
+        <p>
+
+            Pero algo que sí quiero es intentar hacer las cosas mejor.
+
+        </p>
+
+
+        <p>
+
+            Quiero valorar más los pequeños momentos.
+
+            Las conversaciones, las risas, las bromas, las cosas simples
+            y todos esos pequeños detalles que quizá parecen insignificantes,
+            pero que terminan siendo los recuerdos que más se quedan.
+
+        </p>
+
+
+        <p>
+
+            También quiero que sepas que no espero que todo sea perfecto.
+
+            No quiero una relación donde nunca existan problemas.
+
+            Quiero una relación donde, cuando aparezcan los problemas,
+            podamos enfrentarlos juntos y no dejar que ellos decidan
+            por nosotros.
+
+        </p>
+
+
+        <div class="separador">
+
+            🌸 💗 🌸
+
+        </div>
+
+
+        <p>
+
+            Paloma, hay algo que me parece muy bonito de nuestra historia:
+
+            después de todo lo que pasó, todavía pudimos volver a encontrarnos.
+
+        </p>
+
+
+        <p>
+
+            No sé exactamente qué nos depara el futuro.
+
+            Nadie puede saberlo.
+
+            Pero sí sé que ahora mismo quiero disfrutar esta oportunidad
+            que tenemos nuevamente.
+
+        </p>
+
+
+        <p>
+
+            Quiero conocerte todavía más.
+
+            Quiero seguir descubriendo tus gustos, tus formas de pensar,
+            tus pequeñas manías, tus bromas y todas esas cosas que hacen
+            que seas tú.
+
+        </p>
+
+
+        <p>
+
+            Y también quiero que tú puedas conocerme cada vez más,
+
+            incluso con mis defectos, mis inseguridades y las cosas que
+            todavía estoy aprendiendo a mejorar.
+
+        </p>
+
+
+        <p>
+
+            No quiero que tengas que cambiar quién eres para agradarme.
+
+            Quiero que puedas ser tú misma y sentir que puedes hablar
+            conmigo de lo que sea.
+
+        </p>
+
+
+        <p>
+
+            Si vamos a empezar otra vez, quiero que sea con sinceridad,
+            confianza y ganas de que las cosas funcionen.
+
+        </p>
+
+
+        <p>
+
+            Porque aunque nuestra historia ya tuvo un comienzo,
+            siento que ahora podemos escribir una nueva parte de ella.
+
+        </p>
+
+
+        <div class="separador">
+
+            🎀 🐰 🎀
+
+        </div>
+
+
+        <p>
+
+            Y después de escribir todo esto, todavía hay algo que quiero
+            preguntarte.
+
+        </p>
+
+
+        <p>
+
+            Algo que quizá ya sabes, pero que quiero decirte de todas formas.
+
+        </p>
+
+
+        <h2>
+
+            Paloma... 💗
+
+            <br><br>
+
+            ¿Quieres seguir escribiendo esta historia conmigo?
+
+        </h2>
+
+
+        <div class="centrado">
+
+
+            <button
+                class="boton si"
+                onclick="aceptar()">
+
+                Sí 💗
+
+            </button>
+
+
+            <button
+                class="boton no"
+                id="botonNo"
+                onclick="decirNo()">
+
+                No
+
+            </button>
+
+
+        </div>
+
+
+        <p class="firma">
+
+            Con muchísimo cariño,
+
+            <br>
+
+            Rodrigo ❤️
+
+        </p>
+
+
+    </div>
+
+
+
+    <!-- ================================= -->
+    <!-- RESPUESTA -->
+    <!-- ================================= -->
+
+    <div id="respuesta" class="tarjeta pantalla">
+
+
+        <div class="decoracion">
+
+            🎀🐰🎀
+
+        </div>
+
+
+        <h1>
+
+            💗 ¡VOLVIMOS A ELEGIRNOS! 💗
+
+        </h1>
+
+
+        <p class="mensaje-final">
+
+            Paloma, gracias por darle otra oportunidad a nuestra historia.
+
+        </p>
+
+
+        <p class="mensaje-final">
+
+            Después de todo lo que hemos vivido, poder estar nuevamente
+            juntos significa muchísimo para mí.
+
+        </p>
+
+
+        <p class="mensaje-final">
+
+            Esta vez quiero que construyamos algo bonito desde todo lo
+            que aprendimos antes.
+
+        </p>
+
+
+        <p class="mensaje-final">
+
+            Quiero disfrutar cada momento contigo, valorar lo que tenemos
+            y hacer todo lo posible para que esta nueva etapa sea mejor.
+
+        </p>
+
+
+        <p class="mensaje-final">
+
+            No sabemos qué pasará mañana, pero hoy tenemos otra oportunidad
+            para crear nuevos recuerdos.
+
+        </p>
+
+
+        <p class="mensaje-final">
+
+            Y esta vez quiero cuidar mucho más nuestra historia. ❤️
+
+        </p>
+
+
+        <div class="separador">
+
+            🎀 💗 🎀 💗 🎀
+
+        </div>
+
+
+        <h2>
+
+            Gracias por volver a mi vida, Paloma. 🐰💗
+
+        </h2>
+
+
+        <p class="firma">
+
+            — Rodrigo ❤️
+
+        </p>
+
+
+    </div>
+
+
+</div>
+
+
+
+<script>
+
+
+    /* =================================
+       ABRIR CARTA
+    ================================= */
+
+
+    function abrirCarta() {
+
+
+        document
+            .getElementById("inicio")
+            .classList
+            .remove("visible");
+
+
+        document
+            .getElementById("carta")
+            .classList
+            .add("visible");
+
+
+        /*
+         Intentamos iniciar la música automáticamente.
+         Como esto ocurre después de tocar el botón,
+         Chrome normalmente lo permite.
+        */
+
+
+        const musica =
+            document.getElementById("musica");
+
+
+        musica.volume = 0.5;
+
+
+        musica.play().catch(function(error) {
+
+            console.log(
+                "La reproducción automática fue bloqueada."
+            );
+
+        });
+
+    }
+
+
+
+    /* =================================
+       REPRODUCIR MÚSICA
+    ================================= */
+
+
+    function reproducirMusica() {
+
+
+        const musica =
+            document.getElementById("musica");
+
+
+        musica.volume = 0.5;
+
+
+        musica.play().catch(function(error) {
+
+            alert(
+                "No se pudo reproducir la música. " +
+                "Comprueba que el archivo se llame musica.mp3."
+            );
+
+        });
+
+    }
+
+
+
+    /* =================================
+       PAUSAR MÚSICA
+    ================================= */
+
+
+    function pausarMusica() {
+
+
+        const musica =
+            document.getElementById("musica");
+
+
+        musica.pause();
+
+    }
+
+
+
+    /* =================================
+       BOTÓN SÍ
+    ================================= */
+
+
+    function aceptar() {
+
+
+        document
+            .getElementById("carta")
+            .classList
+            .remove("visible");
+
+
+        document
+            .getElementById("respuesta")
+            .classList
+            .add("visible");
+
+
+        crearCorazones();
+
+    }
+
+
+
+    /* =================================
+       BOTÓN NO
+    ================================= */
+
+
+    const mensajesNo = [
+
+        "¿Segura? 🥺",
+
+        "Piénsalo otra vez 💗",
+
+        "¿De verdad? 😭",
+
+        "Porfis 🥺🎀",
+
+        "Dale otra oportunidad 💕",
+
+        "Después de todo lo que vivimos 🥺",
+
+        "No me hagas esto 😭",
+
+        "Última oportunidad 💗"
+
+    ];
+
+
+    let contadorNo = 0;
+
+
+    function decirNo() {
+
+
+        const boton =
+            document.getElementById("botonNo");
+
+
+        boton.innerText =
+            mensajesNo[contadorNo];
+
+
+        contadorNo++;
+
+
+        if (contadorNo >= mensajesNo.length) {
+
+            contadorNo = 0;
+
+        }
+
+
+        const x =
+            Math.random() * 250 - 125;
+
+
+        const y =
+            Math.random() * 150 - 75;
+
+
+        boton.style.transform =
+            "translate(" + x + "px, " + y + "px)";
+
+    }
+
+
+
+    /* =================================
+       CORAZONES
+    ================================= */
+
+
+    function crearCorazones() {
+
+
+        const emojis = [
+
+            "💗",
+            "💕",
+            "💖",
+            "🎀",
+            "🌸",
+            "🐰"
+
+        ];
+
+
+        for (let i = 0; i < 35; i++) {
+
+
+            const elemento =
+                document.createElement("div");
+
+
+            elemento.className =
+                "corazon";
+
+
+            elemento.innerText =
+                emojis[
+                    Math.floor(
+                        Math.random() *
+                        emojis.length
+                    )
+                ];
+
+
+            elemento.style.left =
+                Math.random() * 100 + "vw";
+
+
+            elemento.style.animationDuration =
+                (3 + Math.random() * 4) + "s";
+
+
+            elemento.style.fontSize =
+                (18 + Math.random() * 25) + "px";
+
+
+            document.body.appendChild(elemento);
+
+
+            setTimeout(function() {
+
+                elemento.remove();
+
+            }, 7000);
+
+        }
+
+    }
+
+
+</script>
+
+
+</body>
+
+</html>
